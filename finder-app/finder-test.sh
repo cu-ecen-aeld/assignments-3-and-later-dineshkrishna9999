@@ -1,7 +1,8 @@
 #!/bin/bash
 
 make clean
-make
+
+# Cross-compile step will be added here as part of Assignment 3 part 2
 
 if [ ! -f writer ]; then
     echo "Error: writer application was not built."
