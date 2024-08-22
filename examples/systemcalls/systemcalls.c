@@ -17,11 +17,12 @@
 bool do_system(const char *cmd)
 {
     int ret = system(cmd);
-    return (ret != -1) && (WIFEXITED(ret)) && (WEXITSTATUS(ret) == 0);
+    // Check if system call was successful and command exited with status 0
+    return (ret != -1) && WIFEXITED(ret) && (WEXITSTATUS(ret) == 0);
 }
 
 /**
- * @param count -The numbers of variables passed to the function. The variables are command to execute.
+ * @param count - The number of variables passed to the function. The variables are command to execute.
  *   followed by arguments to pass to the command
  *   Since exec() does not perform path expansion, the command to execute needs
  *   to be an absolute path.
@@ -52,7 +53,7 @@ bool do_exec(int count, ...)
         // Child process
         execv(command[0], command);
         perror("execv failed");
-        exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE); // Exit if execv fails
     } else if (pid > 0) {
         // Parent process
         int status;
@@ -94,12 +95,12 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
         // Child process
         if (dup2(fd, STDOUT_FILENO) < 0) {
             perror("dup2 failed");
-            exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE); // Exit if dup2 fails
         }
         close(fd);
         execv(command[0], command);
         perror("execv failed");
-        exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE); // Exit if execv fails
     } else if (pid > 0) {
         // Parent process
         close(fd);
