@@ -1,17 +1,27 @@
-#include "autotest-validate.h"  
-#include <stdbool.h>  
-  
-bool this_function_returns_true()  
-{  
-    return true;  
-}  
-  
-bool this_function_returns_false()  
-{  
-    return false;  
-}  
-  
-const char* my_username()  
-{  
-    return "dineshkrishna9999";  
-}  
+#include "autotest-validate.h"
+#include <stdbool.h>
+
+/**
+ * @return true (as you may have guessed from the name)
+ */
+bool this_function_returns_true()
+{
+    return true;
+}
+
+/**
+ * @return false (as you may have guessed from the name)
+ */
+bool this_function_returns_false()
+{
+    return false;
+}
+
+/**
+ * @return a string which contains the username you use for
+ * git submissions. This string should match the string in conf/username.txt
+ */
+const char* my_username()
+{
+    return "dineshkrishna9999";
+}
